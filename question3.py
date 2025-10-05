@@ -1,3 +1,5 @@
+
+#part a 
 class Node:
     def __init__(self, key):
         self.key = key
@@ -30,7 +32,6 @@ class FourAryTree:
                         return
                     else:
                         listed_nodes.append(current.children[i])
-                inx+=1
 
     def delete(self, key):
     # Verificar si la raíz está vacía
@@ -72,25 +73,24 @@ class FourAryTree:
                         listed_nodes.append(child)
             inx += 1
 
-            def search(self, key):
-                if self.root is None:
-                    return False
-                listed_nodes = [self.root]
-                inx = 0     
-                while inx < len(listed_nodes):
-                    current = listed_nodes[inx]
-                    inx += 1
+    def search(self, key):
+        if self.root is None:
+            return False
+        listed_nodes = [self.root]
+        inx = 0
+        while inx < len(listed_nodes):
+            current = listed_nodes[inx]
+            inx += 1
+            if current.key == key:
+                return True
+            for i in range(4):
+                child = current.children[i]
+                if child is not None:
+                    listed_nodes.append(child)
+        return False
+        
 
-                    if current.key == key:
-                        return True
-
-                    for i in range(4):
-                        child = current.children[i]
-                        if child is not None:
-                            listed_nodes.append(child)
-                    inx += 1
-                return False
-            
+    
             
 def main():
     tree = FourAryTree()
