@@ -102,7 +102,7 @@ def huffman_encode(st,codes):
         else:
             encoded_str= encoded_str + char
     print("Encoded string:\n", encoded_str)
-
+    return encoded_str
 #Activity D:
 
 def huffman_tree(L):
@@ -117,7 +117,6 @@ def huffman_tree(L):
     root=Node()
 
     for char,code in L:
-
         curr=root
         for num in code:
             if num =='0':
@@ -132,18 +131,24 @@ def huffman_tree(L):
         curr.char=char
     return root
 
-
-
-
-
-
-
-
-
 # Activity e: 
 
+def huffman_decode(bst, tree):
+    if tree is None or len(bst)==0:
+        print("empty")
+        return
+    decoded_str=""
+    curr=tree
+    for num in bst:
+        if num =='0':
+            curr=curr.left
+        else:
+            curr=curr.right
 
-
+        if curr.char is not None:
+            decoded_str= decoded_str + curr.char
+            curr=tree
+    print("Decoded string:\n", decoded_str)
 
 
 
@@ -158,11 +163,15 @@ def main():
     codes = huffman_code(st)
 
     print("\nActivity C: Huffman_encode(st)")
-    huffman_encode(st,codes)
+    encoded=huffman_encode(st,codes)
 
     print("\nActivity D: Huffman_tree(L)")
-    tree_root = huffman_tree(list(codes.items()))
+    root = huffman_tree(list(codes.items()))
 
+    print("\nActivity E: Huffman_decode(bst, tree)")
+    encoded=huffman_encode(st,codes)
+
+    huffman_decode(encoded, root)
 
 main()
 
